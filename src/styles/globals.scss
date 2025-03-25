@@ -1,0 +1,64 @@
+@use "reset";
+@use "fonts";
+@use "libs";
+
+:root {
+  --primary-base: 59.39% 0.1912 261.6;
+  --secondary-base: 68.75% 0.1943 351.54;
+  --text-base: 45.25% 0.0643 261.77;
+  --border-base: 36.35% 0.0489 262.38;
+
+  --primary: oklch(var(--primary-base));
+  --secondary: oklch(var(--secondary-base));
+  --text: oklch(var(--text-base));
+  --border: oklch(var(--border-base));
+  --layout-lines: oklch(var(--border-base) / 0.1);
+
+  --h2: 3.5rem;
+
+  --main-l-pd: 5rem;
+  --main-r-pd: 2.5rem;
+
+  font-family: "PT Sans";
+  color: var(--text);
+}
+
+h2 {
+  font-size: var(--h2);
+  line-height: 1.2;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100svh;
+}
+
+.main {
+  position: relative;
+
+  margin-inline: 20rem 10rem;
+
+  border-right: 1px solid var(--layout-lines);
+  border-left: 1px solid var(--layout-lines);
+
+  min-height: inherit;
+
+  &::before {
+    content: "";
+
+    pointer-events: none;
+
+    position: absolute;
+    inset-block: 0;
+    left: 50%;
+
+    width: 1px;
+    height: 100%;
+
+    background-color: var(--layout-lines);
+
+    transform: translateX(-50%);
+  }
+}
