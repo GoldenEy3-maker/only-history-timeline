@@ -1,3 +1,4 @@
+import React from "react";
 import { CircleTimeline } from "./componets/circle-timeline";
 import { Section } from "./componets/section";
 

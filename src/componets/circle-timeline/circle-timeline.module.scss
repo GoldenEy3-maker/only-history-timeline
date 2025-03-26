@@ -1,4 +1,4 @@
-.circle-timeline {
+.circleTimeline {
   position: relative;
 
   &::before {
@@ -18,7 +18,7 @@
     transform: translateY(-50%);
   }
 
-  .swiper {
+  :global .swiper {
     display: flex;
     align-items: center;
     justify-content: center;
