@@ -1,11 +1,17 @@
 import React from "react";
 import { A11y, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import * as styles from "./circle-timeline.module.scss";
+import * as styles from "./circle-slider-pagination.module.scss";
+import clsx from "clsx";
 
-export function CircleTimeline() {
+type CircleSliderPaginationProps = {} & React.ComponentProps<"div">;
+
+export function CircleSliderPagination({
+  className,
+  ...props
+}: CircleSliderPaginationProps) {
   return (
-    <div className={styles.circleTimeline}>
+    <div className={clsx(styles.circle, className)} {...props}>
       <Swiper
         modules={[Pagination, A11y]}
         pagination={{

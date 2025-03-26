@@ -1,22 +1,5 @@
-.circleTimeline {
+.circle {
   position: relative;
-
-  &::before {
-    content: "";
-
-    pointer-events: none;
-
-    position: absolute;
-    inset-inline: 0;
-    top: 50%;
-
-    width: 100%;
-    height: 1px;
-
-    background-color: var(--layout-lines);
-
-    transform: translateY(-50%);
-  }
 
   :global .swiper {
     display: flex;

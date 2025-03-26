@@ -62,3 +62,13 @@ h2 {
     transform: translateX(-50%);
   }
 }
+
+.grid-stack {
+  display: grid;
+  grid-template-areas: "stack";
+
+  & > * {
+    grid-area: stack;
+    height: fit-content;
+  }
+}

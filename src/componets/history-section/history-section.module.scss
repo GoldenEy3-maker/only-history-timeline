@@ -1,0 +1,44 @@
+.historySection {
+  &Ticker {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    align-self: center;
+    justify-self: center;
+    font-size: 12.5rem;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateX(-1rem);
+
+    &From {
+      color: var(--primary);
+    }
+
+    &To {
+      color: var(--secondary);
+    }
+  }
+
+  &Circle {
+    position: relative;
+    padding-block: 2.8125rem 2.5rem;
+
+    &::before {
+      content: "";
+
+      pointer-events: none;
+
+      position: absolute;
+      inset-inline: 0;
+      top: 50%;
+      z-index: -1;
+
+      width: 100%;
+      height: 1px;
+
+      background-color: var(--layout-lines);
+
+      transform: translateY(-50%);
+    }
+  }
+}
