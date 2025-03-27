@@ -52,6 +52,11 @@
 
   :global .swiper {
     margin-right: 2rem;
+
+    &-button-lock {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   &NextTrigger {
