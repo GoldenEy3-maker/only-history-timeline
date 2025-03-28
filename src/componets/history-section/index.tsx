@@ -5,6 +5,7 @@ import * as styles from "./history-section.module.scss";
 import clsx from "clsx";
 import { SwiperSlide } from "swiper/react";
 import { EventsSlider } from "./events-slider";
+import { Ticker } from "./ticker";
 
 const EVENTS_DATA = [
   {
@@ -159,10 +160,7 @@ export function HistorySection() {
         <Section.Title>
           Исторические <br /> даты
         </Section.Title>
-        <div className={styles.ticker}>
-          <span className={styles.tickerFrom}>{fromTickerValue}</span>
-          <span className={styles.tickerTo}>{toTickerValue}</span>
-        </div>
+        <Ticker from={fromTickerValue} to={toTickerValue} />
         <CircleSliderControls
           data={EVENTS_DATA.flatMap((period) => period.title)}
           onRealIndexChange={(swiper) => setControlsIndex(swiper.realIndex)}

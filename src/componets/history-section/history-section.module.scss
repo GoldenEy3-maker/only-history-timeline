@@ -53,7 +53,8 @@
   :global .swiper {
     margin-right: 2rem;
 
-    &-button-lock {
+    &-button-lock,
+    &-button-disabled {
       opacity: 0;
       visibility: hidden;
     }
