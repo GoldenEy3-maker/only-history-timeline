@@ -30,9 +30,11 @@ export function CircleSliderControls({
 
   const center = { x: width / 2, y: height / 2 };
   const radius = Math.min(width, height) / 2;
+  const startAngle = 60;
+  const angleStep = 360 / data.length;
 
   function calcBulletPosition(index: number) {
-    const angle = (-index * (360 / data.length) - 120) * (Math.PI / 180);
+    const angle = (index * angleStep - startAngle) * (Math.PI / 180);
     const x = center.x + radius * Math.cos(angle);
     const y = center.y + radius * Math.sin(angle);
 
@@ -83,23 +85,34 @@ export function CircleSliderControls({
         {data.map((value) => (
           <SwiperSlide key={value} />
         ))}
-        <div className="swiper-pagination" ref={ref}>
+        <div
+          className={styles.circlePagination}
+          ref={ref}
+          style={
+            {
+              "--rotate": `${-(swiper?.activeIndex ?? 0) * angleStep}deg`,
+            } as React.CSSProperties
+          }>
           {data.map((title, index) => {
             const { x, y } = calcBulletPosition(index);
             return (
               <span
                 key={title}
                 data-title={title}
-                style={{
-                  top: y + "px",
-                  left: x + "px",
-                }}
+                style={
+                  {
+                    top: y + "px",
+                    left: x + "px",
+                    "--rotate": `${(swiper?.activeIndex ?? 0) * angleStep}deg`,
+                  } as React.CSSProperties
+                }
                 tabIndex={0}
-                className={clsx("swiper-pagination-bullet", {
-                  "swiper-pagination-bullet-active":
-                    swiper?.activeIndex === index,
+                className={clsx(styles.circlePaginationBullet, {
+                  [styles._active]: swiper?.activeIndex === index,
                 })}
-                onClick={() => swiper?.slideTo(index)}></span>
+                onClick={() => swiper?.slideTo(index)}>
+                {index + 1}
+              </span>
             );
           })}
         </div>

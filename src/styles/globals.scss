@@ -9,6 +9,7 @@
   --border-base: 36.35% 0.0489 262.38;
   --background-base: 97.05% 0.0054 274.97;
   --white-base: 100% 0 0;
+  --accent-base: 56.79% 0.2113 276.71;
 
   --primary: oklch(var(--primary-base));
   --secondary: oklch(var(--secondary-base));
@@ -17,6 +18,7 @@
   --layout-lines: oklch(var(--border-base) / 0.1);
   --background: oklch(var(--background-base));
   --white: oklch(var(--white-base));
+  --accent: oklch(var(--accent-base));
 
   --h2: 3.5rem;
 
