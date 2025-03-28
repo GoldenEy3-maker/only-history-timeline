@@ -7,25 +7,36 @@
   --secondary-base: 68.75% 0.1943 351.54;
   --text-base: 45.25% 0.0643 261.77;
   --border-base: 36.35% 0.0489 262.38;
+  --background-base: 97.05% 0.0054 274.97;
+  --white-base: 100% 0 0;
 
   --primary: oklch(var(--primary-base));
   --secondary: oklch(var(--secondary-base));
   --text: oklch(var(--text-base));
   --border: oklch(var(--border-base));
   --layout-lines: oklch(var(--border-base) / 0.1);
+  --background: oklch(var(--background-base));
+  --white: oklch(var(--white-base));
 
   --h2: 3.5rem;
 
   --main-l-pd: 5rem;
   --main-r-pd: 2.5rem;
 
-  font-family: "PT Sans";
+  --ff-pt: "PT Sans";
+  --ff-bebas: "Bebas Neue";
+
+  font-family: var(--ff-pt);
   color: var(--text);
 }
 
 h2 {
   font-size: var(--h2);
   line-height: 1.2;
+}
+
+body {
+  background-color: var(--background);
 }
 
 .wrapper {

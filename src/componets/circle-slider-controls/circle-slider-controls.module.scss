@@ -2,9 +2,9 @@
   position: relative;
 
   :global .swiper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 
     &-wrapper {
       display: none;
@@ -22,5 +22,24 @@
       border-radius: 50%;
       border: 1px solid oklch(var(--border-base) / 0.2);
     }
+  }
+
+  &Tools {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-left: var(--main-l-pd);
+  }
+
+  &Fraction {
+    font-size: 0.875rem;
+    line-height: 1;
+  }
+
+  &Navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
   }
 }
