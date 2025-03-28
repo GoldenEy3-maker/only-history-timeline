@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Section } from "../section";
+import { Section } from "../ui/section";
 import { CircleSliderControls } from "../circle-slider-controls";
 import * as styles from "./history-section.module.scss";
 import clsx from "clsx";

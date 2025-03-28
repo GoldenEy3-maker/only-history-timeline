@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { Headings } from "../../utils/types";
+import { Headings } from "../../../utils/types";
 import * as styles from "./section.module.scss";
 
 type TitleProps = {

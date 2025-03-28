@@ -3,8 +3,8 @@ import { A11y, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import * as styles from "./circle-slider-controls.module.scss";
 import clsx from "clsx";
-import { Button } from "../button";
-import { Icons } from "../icons";
+import { Button } from "../ui/button";
+import { Icons } from "../ui/icons";
 import { Swiper as TSwiper } from "swiper/types";
 import { useResizeObserver } from "usehooks-ts";
 

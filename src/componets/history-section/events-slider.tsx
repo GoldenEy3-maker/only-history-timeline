@@ -2,8 +2,8 @@ import React from "react";
 import { Swiper } from "swiper/react";
 import * as styles from "./history-section.module.scss";
 import { Navigation } from "swiper/modules";
-import { Button } from "../button";
-import { Icons } from "../icons";
+import { Button } from "../ui/button";
+import { Icons } from "../ui/icons";
 
 type EventsSliderProps<T> = {
   data: T[];
