@@ -1,0 +1,45 @@
+.button {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-width: 2px;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+  }
+
+  &Default {
+    background-color: var(--white);
+    color: var(--primary);
+  }
+
+  &Outlined {
+    border: 1px solid oklch(var(--border-base) / 0.5);
+    background-color: var(--background);
+  }
+
+  &Icon {
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+
+    &Sm {
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50%;
+    }
+  }
+}
