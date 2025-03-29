@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { A11y, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import * as styles from "./circle-slider-controls.module.scss";
@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { Button } from "../button";
 import { Icons } from "../icons";
 import { Swiper as TSwiper } from "swiper/types";
+import { useResizeObserver } from "usehooks-ts";
 
 type CircleSliderControlsProps = {
   data: string[];
@@ -19,6 +20,24 @@ export function CircleSliderControls({
   ...props
 }: CircleSliderControlsProps) {
   const [swiper, setSwiper] = useState<TSwiper | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { width = 0, height = 0 } = useResizeObserver({
+    // @ts-expect-error Type 'RefObject<HTMLDivElement | null>' is not assignable to type 'RefObject<HTMLElement>'
+    ref,
+    box: "border-box",
+  });
+
+  const center = { x: width / 2, y: height / 2 };
+  const radius = Math.min(width, height) / 2;
+
+  function calcBulletPosition(index: number) {
+    const angle = (-index * (360 / data.length) - 120) * (Math.PI / 180);
+    const x = center.x + radius * Math.cos(angle);
+    const y = center.y + radius * Math.sin(angle);
+
+    return { x, y };
+  }
 
   const endFraction = useMemo(() => {
     return data.length.toFixed(0).padStart(2, "0");
@@ -60,19 +79,30 @@ export function CircleSliderControls({
           enabled: true,
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
-        }}
-        pagination={{
-          type: "bullets",
-          clickable: true,
-          renderBullet: (index, className) => {
-            return `<span data-title="${data[index]}" class="${className}">${
-              index + 1
-            }</span>`;
-          },
         }}>
         {data.map((value) => (
           <SwiperSlide key={value} />
         ))}
+        <div className="swiper-pagination" ref={ref}>
+          {data.map((title, index) => {
+            const { x, y } = calcBulletPosition(index);
+            return (
+              <span
+                key={title}
+                data-title={title}
+                style={{
+                  top: y + "px",
+                  left: x + "px",
+                }}
+                tabIndex={0}
+                className={clsx("swiper-pagination-bullet", {
+                  "swiper-pagination-bullet-active":
+                    swiper?.activeIndex === index,
+                })}
+                onClick={() => swiper?.slideTo(index)}></span>
+            );
+          })}
+        </div>
       </Swiper>
     </div>
   );

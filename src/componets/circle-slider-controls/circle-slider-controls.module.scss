@@ -1,10 +1,11 @@
 .circle {
   position: relative;
-
   :global .swiper {
     // display: flex;
     // align-items: center;
     // justify-content: center;
+    overflow: visible;
+    // padding-inline: 1rem;
 
     &-wrapper {
       display: none;
@@ -21,6 +22,35 @@
 
       border-radius: 50%;
       border: 1px solid oklch(var(--border-base) / 0.2);
+
+      &-bullet {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        margin: 0;
+
+        &.swiper-pagination-bullet-active {
+          &::before {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        &::before {
+          content: attr(data-title);
+          position: absolute;
+          top: 50%;
+          left: calc(100% + 1.25rem);
+          font-size: 1.25rem;
+          line-height: 1;
+          transform: translateY(-50%);
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+        }
+      }
     }
   }
 
