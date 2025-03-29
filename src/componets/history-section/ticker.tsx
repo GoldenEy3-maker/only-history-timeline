@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import * as styles from "./history-section.module.scss";
 import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
+import gsap from "gsap";
+// import NumberFlow from "@number-flow/react";
 
 type TrickerProps = {
   from: number;
@@ -9,6 +10,9 @@ type TrickerProps = {
 };
 
 export function Ticker({ from, to }: TrickerProps) {
+  // Для такой анимации чисел я бы предпочел использовать @number-flow/react
+  // Если есть желание увидеть их в действии, то нужно закомментировать весь код GSAP, и в jsx раскомментировать NumberFlow компонент + его импорт
+
   const container = useRef<HTMLDivElement>(null);
   const fromRef = useRef<HTMLSpanElement>(null);
   const toRef = useRef<HTMLSpanElement>(null);
@@ -41,8 +45,12 @@ export function Ticker({ from, to }: TrickerProps) {
 
   return (
     <div className={styles.ticker} ref={container}>
-      <span className={styles.tickerFrom} ref={fromRef}></span>
-      <span className={styles.tickerTo} ref={toRef}></span>
+      <span className={styles.tickerFrom} ref={fromRef}>
+        {/* <NumberFlow value={from} format={{ useGrouping: false }} /> */}
+      </span>
+      <span className={styles.tickerTo} ref={toRef}>
+        {/* <NumberFlow value={to} format={{ useGrouping: false }} /> */}
+      </span>
     </div>
   );
 }

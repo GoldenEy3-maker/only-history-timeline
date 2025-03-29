@@ -96,7 +96,8 @@ export function CircleSliderControls({
           {data.map((title, index) => {
             const { x, y } = calcBulletPosition(index);
             return (
-              <span
+              <button
+                type="button"
                 key={title}
                 data-title={title}
                 style={
@@ -112,7 +113,7 @@ export function CircleSliderControls({
                 })}
                 onClick={() => swiper?.slideTo(index)}>
                 {index + 1}
-              </span>
+              </button>
             );
           })}
         </div>

@@ -25,29 +25,43 @@
 
     &Bullet {
       cursor: pointer;
+
       position: absolute;
       top: 0;
       left: 0;
+
       margin: 0;
       width: 3.5rem;
       height: 3.5rem;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       color: transparent;
       font-size: 1.25rem;
+
+      border-radius: 50%;
+      background-color: transparent;
+      border: 0;
+
       transform-origin: center center;
       transform: translate(-50%, -50%) rotate(var(--rotate));
-      transition: color 300ms ease-in-out, transform 800ms ease-in-out;
+
+      transition: color 300ms ease-in-out, transform 800ms ease-in-out,
+        box-shadow 300ms ease-in-out;
 
       &::after {
         content: attr(data-title);
+
         position: absolute;
         top: 50%;
         left: calc(100% + 1.25rem);
+
         font-size: 1.25rem;
         font-weight: 700;
         line-height: 1;
+
         transform: translateY(-50%);
         opacity: 0;
         visibility: hidden;
@@ -56,16 +70,20 @@
 
       &:before {
         content: "";
+
         position: absolute;
         top: 50%;
         left: 50%;
         z-index: -1;
+
         width: 0.375rem;
         height: 0.375rem;
+
         border-radius: 50%;
-        transform: translate(-50%, -50%);
-        background-color: var(--text);
         border: 1px solid oklch(var(--border-base) / 0.5);
+        background-color: var(--text);
+
+        transform: translate(-50%, -50%);
         transition: width 300ms ease-in-out, height 300ms ease-in-out,
           background 300ms ease-in-out;
       }
@@ -76,6 +94,7 @@
         &::after {
           opacity: 1;
           visibility: visible;
+
           transition: opacity 300ms ease-in-out 800ms,
             visibility 300ms ease-in-out 800ms;
         }
@@ -87,12 +106,31 @@
         }
       }
 
+      &:focus {
+        outline: none;
+      }
+
+      &:focus-visible {
+        outline: 2px solid transparent;
+        outline-width: 2px;
+        box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+
+        color: var(--text);
+        &:before {
+          width: 100%;
+          height: 100%;
+
+          background-color: var(--background);
+        }
+      }
+
       @media (hover: hover) {
         &:hover {
           color: var(--text);
           &:before {
             width: 100%;
             height: 100%;
+
             background-color: var(--background);
           }
         }
@@ -101,10 +139,11 @@
   }
 
   &Tools {
-    align-self: flex-end;
     display: flex;
     flex-direction: column;
+    align-self: flex-end;
     gap: 1.25rem;
+
     padding-left: var(--main-l-pd);
   }
 
@@ -118,5 +157,15 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
+
+    :global .swiper-button-prev,
+    :global .swiper-button-next {
+      transition: scale 150ms ease-in-out;
+      @media (hover: hover) {
+        &:hover {
+          scale: 1.2;
+        }
+      }
+    }
   }
 }

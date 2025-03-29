@@ -45,13 +45,15 @@
 }
 
 .eventsSlider {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-inline: var(--main-l-pd) var(--main-r-pd);
+  padding-right: calc(var(--main-r-pd) + 4rem);
+  padding-left: var(--main-l-pd);
   margin-top: 3.5rem;
 
   :global .swiper {
-    margin-right: 2rem;
+    // margin-right: 2rem;
 
     &-button-lock,
     &-button-disabled {
@@ -60,9 +62,21 @@
     }
   }
 
+  &PrevTrigger,
   &NextTrigger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     box-shadow: 0 0 15px 0 oklch(var(--primary-base) / 0.1);
     flex-shrink: 0;
+  }
+
+  &PrevTrigger {
+    left: 1.25rem;
+  }
+
+  &NextTrigger {
+    right: var(--main-r-pd);
   }
 
   &Item {
