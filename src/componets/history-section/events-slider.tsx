@@ -23,6 +23,11 @@ export function EventsSlider<T>({ data, children }: EventsSliderProps<T>) {
   const isMounted = useIsMounted();
   const timeoutRef = useRef<NodeJS.Timeout>(undefined);
 
+  const [nextNavigationEl, setNextNavigationEl] =
+    useState<HTMLButtonElement | null>(null);
+  const [prevNavigationEl, setPrevNavigationEl] =
+    useState<HTMLButtonElement | null>(null);
+
   useGSAP(
     () => {
       if (!isMounted()) return;
@@ -60,27 +65,28 @@ export function EventsSlider<T>({ data, children }: EventsSliderProps<T>) {
       <Button
         type="button"
         size="icon-sm"
-        className={styles.eventsSliderPrevTrigger}>
+        className={styles.eventsSliderPrevTrigger}
+        ref={(node) => setPrevNavigationEl(node)}>
         <Icons.ArrowLeft />
       </Button>
       <Swiper
         grabCursor
-        slidesPerView="auto"
+        slidesPerView={3}
         modules={[Navigation]}
-        onSlidesLengthChange={(swiper) => swiper.update()}
         spaceBetween={80}
         speed={800}
         navigation={{
           enabled: true,
-          nextEl: "." + styles.eventsSliderNextTrigger,
-          prevEl: "." + styles.eventsSliderPrevTrigger,
+          nextEl: nextNavigationEl,
+          prevEl: prevNavigationEl,
         }}>
         {typeof children === "function" ? currentData.map(children) : children}
       </Swiper>
       <Button
         type="button"
         size="icon-sm"
-        className={styles.eventsSliderNextTrigger}>
+        className={styles.eventsSliderNextTrigger}
+        ref={(node) => setNextNavigationEl(node)}>
         <Icons.ArrowRight />
       </Button>
     </div>

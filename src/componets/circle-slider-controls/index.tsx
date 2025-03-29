@@ -21,6 +21,8 @@ export function CircleSliderControls({
 }: CircleSliderControlsProps) {
   const [swiper, setSwiper] = useState<TSwiper | null>(null);
   const ref = useRef<HTMLDivElement>(null);
+  const nextNavigationRef = useRef<HTMLButtonElement>(null);
+  const prevNavigationRef = useRef<HTMLButtonElement>(null);
 
   const { width = 0, height = 0 } = useResizeObserver({
     // @ts-expect-error Type 'RefObject<HTMLDivElement | null>' is not assignable to type 'RefObject<HTMLElement>'
@@ -59,15 +61,17 @@ export function CircleSliderControls({
         <div className={styles.circleNavigation}>
           <Button
             type="button"
-            className="swiper-button-prev"
+            className={styles.circleNavigationPrev}
             variant="outlined"
+            ref={prevNavigationRef}
             size="icon">
             <Icons.ArrowLeft />
           </Button>
           <Button
             type="button"
-            className="swiper-button-next"
+            className={styles.circleNavigationNext}
             variant="outlined"
+            ref={nextNavigationRef}
             size="icon">
             <Icons.ArrowRight />
           </Button>
@@ -79,8 +83,8 @@ export function CircleSliderControls({
         modules={[Pagination, A11y, Navigation]}
         navigation={{
           enabled: true,
-          prevEl: ".swiper-button-prev",
-          nextEl: ".swiper-button-next",
+          prevEl: prevNavigationRef.current,
+          nextEl: nextNavigationRef.current,
         }}>
         {data.map((value) => (
           <SwiperSlide key={value} />

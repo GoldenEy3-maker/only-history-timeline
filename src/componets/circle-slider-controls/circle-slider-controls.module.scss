@@ -158,12 +158,15 @@
     align-items: center;
     gap: 1.25rem;
 
-    :global .swiper-button-prev,
-    :global .swiper-button-next {
-      transition: scale 150ms ease-in-out;
+    &Next,
+    &Prev {
+      transition: scale 150ms ease-in-out, opacity 300ms ease-in-out !important;
+
       @media (hover: hover) {
-        &:hover {
-          scale: 1.2;
+        &:not(:disabled) {
+          &:hover {
+            scale: 1.2;
+          }
         }
       }
     }
