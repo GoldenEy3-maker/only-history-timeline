@@ -164,9 +164,11 @@
       transform: rotate(0);
 
       &Bullet {
-        position: static;
-        width: 0.375rem;
-        height: 0.375rem;
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 0.375rem !important;
+        height: 0.375rem !important;
         transform: rotate(0);
         color: transparent !important;
 
