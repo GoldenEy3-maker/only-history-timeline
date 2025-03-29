@@ -106,8 +106,8 @@ export function CircleSliderControls({
                 data-title={title}
                 style={
                   {
-                    top: y + "px",
-                    left: x + "px",
+                    "--top": y + "px",
+                    "--left": x + "px",
                     "--rotate": `${(swiper?.activeIndex ?? 0) * angleStep}deg`,
                   } as React.CSSProperties
                 }

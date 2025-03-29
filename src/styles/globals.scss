@@ -20,10 +20,22 @@
   --white: oklch(var(--white-base));
   --accent: oklch(var(--accent-base));
 
-  --h2: 3.5rem;
+  --h2: clamp(
+    1.25rem,
+    calc(-0.357rem + 4.018vw),
+    3.5rem
+  ); /* min: 20px, max: 56px */
 
-  --main-l-pd: 5rem;
-  --main-r-pd: 2.5rem;
+  --main-l-pd: clamp(
+    1.25rem,
+    calc(-1.429rem + 6.696vw),
+    5rem
+  ); /* min: 20px, max: 80px */
+  --main-r-pd: clamp(
+    1.25rem,
+    calc(0.357rem + 2.232vw),
+    2.5rem
+  ); /* min: 20px, max: 40px */
 
   --ff-pt: "PT Sans";
   --ff-bebas: "Bebas Neue";
@@ -46,33 +58,39 @@ body {
   flex-direction: column;
 
   min-height: 100svh;
+
+  max-width: 1920px;
+  margin-inline: auto;
 }
 
 .main {
   position: relative;
 
-  margin-inline: 20rem 10rem;
+  margin-inline: clamp(0rem, calc(-20rem + 41.667vw), 20rem)
+    /* min: 0px, max: 320px */ clamp(0rem, calc(-10rem + 20.833vw), 10rem); /* min: 0px, max: 160px */
 
   border-right: 1px solid var(--layout-lines);
   border-left: 1px solid var(--layout-lines);
 
   min-height: inherit;
 
-  &::before {
-    content: "";
+  @media screen and (min-width: 789px) {
+    &::before {
+      content: "";
 
-    pointer-events: none;
+      pointer-events: none;
 
-    position: absolute;
-    inset-block: 0;
-    left: 50%;
+      position: absolute;
+      inset-block: 0;
+      left: 50%;
 
-    width: 1px;
-    height: 100%;
+      width: 1px;
+      height: 100%;
 
-    background-color: var(--layout-lines);
+      background-color: var(--layout-lines);
 
-    transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
   }
 }
 

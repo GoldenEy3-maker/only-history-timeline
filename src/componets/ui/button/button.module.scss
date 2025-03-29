@@ -43,14 +43,32 @@
   }
 
   &Icon {
-    height: 3.125rem;
-    width: 3.125rem;
+    width: clamp(
+      1.563rem,
+      calc(0.446rem + 2.79vw),
+      3.125rem
+    ); /* min: 25px, max: 50px */
+    height: clamp(
+      1.563rem,
+      calc(0.446rem + 2.79vw),
+      3.125rem
+    ); /* min: 25px, max: 50px */
+    padding: 0.5rem;
     border-radius: 50%;
 
     &Sm {
-      height: 2.5rem;
-      width: 2.5rem;
+      height: clamp(
+        1.25rem,
+        calc(0.357rem + 2.232vw),
+        2.5rem
+      ); /* min: 20px, max: 40px */
+      width: clamp(
+        1.25rem,
+        calc(0.357rem + 2.232vw),
+        2.5rem
+      ); /* min: 20px, max: 40px */
       border-radius: 50%;
+      padding: 0.5rem;
     }
   }
 }

@@ -155,8 +155,8 @@ export function HistorySection() {
     ].year;
 
   return (
-    <Section.Root>
-      <div className="grid-stack">
+    <Section.Root className={styles.section}>
+      <div className={clsx(styles.sectionWrapper, "grid-stack")}>
         <Section.Title>
           Исторические <br /> даты
         </Section.Title>

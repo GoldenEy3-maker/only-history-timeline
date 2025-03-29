@@ -71,14 +71,22 @@ export function EventsSlider<T>({ data, children }: EventsSliderProps<T>) {
       </Button>
       <Swiper
         grabCursor
-        slidesPerView={3}
+        slidesPerView="auto"
         modules={[Navigation]}
-        spaceBetween={80}
+        spaceBetween={25}
         speed={800}
         navigation={{
           enabled: true,
           nextEl: nextNavigationEl,
           prevEl: prevNavigationEl,
+        }}
+        breakpoints={{
+          768: {
+            spaceBetween: 48,
+          },
+          992: {
+            spaceBetween: 80,
+          },
         }}>
         {typeof children === "function" ? currentData.map(children) : children}
       </Swiper>

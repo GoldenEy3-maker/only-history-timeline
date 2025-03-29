@@ -1,36 +1,67 @@
+.section {
+  display: flex;
+  flex-direction: column;
+
+  &Wrapper {
+    @media screen and (max-width: 768px) {
+      display: contents !important;
+    }
+  }
+}
+
 .circle {
   position: relative;
+  order: 3;
 
-  &::before {
-    content: "";
+  @media screen and (min-width: 769px) {
+    order: 2;
 
-    pointer-events: none;
+    :global .swiper {
+      padding-block: 2.8125rem 2.5rem;
+    }
 
-    position: absolute;
-    inset-inline: 0;
-    top: 50%;
-    z-index: -1;
+    &::before {
+      content: "";
 
-    width: 100%;
-    height: 1px;
+      pointer-events: none;
 
-    background-color: var(--layout-lines);
+      position: absolute;
+      inset-inline: 0;
+      top: 50%;
+      z-index: -1;
 
-    transform: translateY(-50%);
+      width: 100%;
+      height: 1px;
+
+      background-color: var(--layout-lines);
+
+      transform: translateY(-50%);
+    }
   }
 
-  :global .swiper {
-    padding-block: 2.8125rem 2.5rem;
+  @media screen and (max-width: 768px) {
+    display: flex !important;
+    align-items: center;
+    gap: 2.375rem;
+    margin-top: 4.875rem;
+
+    :global .swiper {
+      margin-inline: 0;
+    }
   }
 }
 
 .ticker {
   display: flex;
   align-items: center;
-  gap: 5rem;
+  gap: clamp(2rem, calc(-0.143rem + 5.357vw), 5rem); /* min: 32px, max: 80px */
   align-self: center;
   justify-self: center;
-  font-size: 12.5rem;
+  font-size: clamp(
+    3.5rem,
+    calc(-2.929rem + 16.071vw),
+    12.5rem
+  ); /* min: 56px, max: 200px */
   font-weight: 700;
   line-height: 1;
   transform: translateX(-1rem);
@@ -42,18 +73,49 @@
   &To {
     color: var(--secondary);
   }
+
+  @media screen and (max-width: 768px) {
+    padding-block: 3.5rem 3.625rem;
+    width: 100%;
+    align-self: auto;
+    justify-self: auto;
+    justify-content: center;
+    padding-inline: var(--main-l-pd) var(--main-r-pd);
+    transform: translate(0);
+    min-height: 11.25rem;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      inset-inline: var(--main-l-pd) var(--main-r-pd);
+      height: 1px;
+      background-color: oklch(84.73% 0.0179 264.47);
+    }
+  }
 }
 
 .eventsSlider {
   position: relative;
   display: flex;
   align-items: center;
-  padding-right: calc(var(--main-r-pd) + 4rem);
-  padding-left: var(--main-l-pd);
-  margin-top: 3.5rem;
+  margin-top: clamp(
+    1.25rem,
+    calc(-0.357rem + 4.018vw),
+    3.5rem
+  ); /* min: 20px, max: 56px */
+
+  @media screen and (min-width: 769px) {
+    padding-right: calc(
+      var(--main-r-pd) + clamp(0rem, calc(-2.857rem + 7.143vw), 4rem)
+        /* min: 0px, max: 64px */
+    );
+    padding-left: var(--main-l-pd);
+  }
 
   :global .swiper {
     // margin-right: 2rem;
+    margin-inline: 0 !important;
 
     &-button-lock,
     &-button-disabled {
@@ -69,26 +131,48 @@
     transform: translateY(-50%);
     box-shadow: 0 0 15px 0 oklch(var(--primary-base) / 0.1);
     flex-shrink: 0;
+
+    @media screen and (max-width: 991px) {
+      display: none;
+    }
   }
 
   &PrevTrigger {
-    left: 1.25rem;
+    left: clamp(
+      0.5rem,
+      calc(-0.864rem + 2.202vw),
+      1.25rem
+    ); /* min: 8px, max: 20px */
   }
 
   &NextTrigger {
-    right: var(--main-r-pd);
+    right: calc(var(--main-r-pd) + clamp(-1rem, -2.8235rem + 2.9412vw, 0rem));
   }
 
   &Item {
-    width: 20rem !important;
+    width: clamp(10.375rem, calc(3.5rem + 17.188vw), 20rem)
+      /* min: 166px, max: 320px */ !important;
 
     &:nth-child(2n) {
-      width: 25rem !important;
+      width: clamp(10.375rem, calc(-0.071rem + 26.116vw), 25rem)
+        /* min: 166px, max: 400px */ !important;
     }
+
+    // &:not(:last-child) {
+    //   margin-right: clamp(
+    //     1.563rem,
+    //     calc(-0.893rem + 6.138vw),
+    //     5rem
+    //   ); /* min: 25px, max: 80px */
+    // }
 
     h4 {
       font-family: var(--ff-bebas);
-      font-size: 1.5625rem;
+      font-size: clamp(
+        1rem,
+        calc(0.598rem + 1.004vw),
+        1.563rem
+      ); /* min: 16px, max: 25px */
       line-height: 1.2;
       color: var(--primary);
     }
@@ -96,8 +180,21 @@
     p {
       margin-top: auto;
       padding-top: 0.9375rem;
-      font-size: 1.25rem;
+      font-size: clamp(
+        0.875rem,
+        calc(0.607rem + 0.67vw),
+        1.25rem
+      ); /* min: 14px, max: 20px */
       line-height: 1.5;
+    }
+
+    @media screen and (max-width: 768px) {
+      &:first-child {
+        padding-left: var(--main-l-pd);
+      }
+      &:last-child {
+        padding-right: var(--main-r-pd);
+      }
     }
   }
 }
